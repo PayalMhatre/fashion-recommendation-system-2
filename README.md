@@ -1,0 +1,18 @@
+# fashion-recommendation-system-2
+import tensorflow
+from keras.applications.resnet50 import ResNet50
+from keras.layers import GlobalMaxPooling2D
+
+model=ResNet50(weights='imagenet',include_top= False, input_shape=(224,224,3))
+model.trainable=False
+model = tensorflow.keras.Sequential([
+    model,
+    GlobalMaxPooling2D()
+])
+model.summary()
+import cv2 
+import numpy as np
+img=cv2.imread("payal.jpg")
+img=cv2.resize(img,(224,224))
+img =np.array(img)
+print(img.shape)
